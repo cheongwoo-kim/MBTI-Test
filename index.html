@@ -22,6 +22,11 @@
         <button id="A" type="button" class="btn btn-primary mt-5">Primary</button>
         <button id="B" type="button" class="btn btn-primary mt-5">Primary</button>
     </article>
+    <article class="result">
+        <img id="img" class="rounded-circle mt-5" src="lion.jpg" alt="animal">
+        <h2 id="animal" class="text-center mt-5">동물이름</h2>
+        <h3 id="explain" class="text-center mt-5">설명</h3>
+    </article>
     <input type="hidden" id="EI" value="0">
     <input type="hidden" id="SN" value="0">
     <input type="hidden" id="TF" value="0">
@@ -34,6 +39,30 @@
             1: {"title" : "問題 1", "type" : "EI", "A" : "E", "B": "I"},
             2: {"title" : "問題 2", "type" : "EI", "A" : "E", "B": "I"},
             3: {"title" : "問題 3", "type" : "EI", "A" : "E", "B": "I"},
+            4: {"title" : "問題 4", "type" : "SN", "A" : "S", "B": "N"},
+            5: {"title" : "問題 5", "type" : "SN", "A" : "S", "B": "N"},
+            6: {"title" : "問題 6", "type" : "SN", "A" : "S", "B": "N"},
+            7: {"title" : "問題 7", "type" : "TF", "A" : "T", "B": "F"},
+            8: {"title" : "問題 8", "type" : "TF", "A" : "T", "B": "F"},
+            9: {"title" : "問題 9", "type" : "TF", "A" : "T", "B": "F"},
+            10: {"title" : "問題 10", "type" : "JP", "A" : "J", "B": "P"},
+            11: {"title" : "問題 11", "type" : "JP", "A" : "J", "B": "P"},
+            12: {"title" : "問題 12", "type" : "JP", "A" : "J", "B": "P"},
+        }
+        var result = {
+            "ISTJ" : {"animal": "하마", "explain": "하마 설명", "img":"lion.jpg"},
+            "ENFP" : {"animal": "멋쟁이 사자", "explain": "멋쟁이 사자 설명", "img":"lion.jpg"},
+            "ENTJ" : {"animal": "호랑이", "explain": "호랑이 설명", "img":"lion.jpg"},
+            "ISTJ" : {"animal": "하마", "explain": "하마 설명", "img":"lion.jpg"},
+            "ENFP" : {"animal": "멋쟁이 사자", "explain": "멋쟁이 사자 설명", "img":"lion.jpg"},
+            "ENTJ" : {"animal": "호랑이", "explain": "호랑이 설명", "img":"lion.jpg"},
+            "ISTJ" : {"animal": "하마", "explain": "하마 설명", "img":"lion.jpg"},
+            "ENFP" : {"animal": "멋쟁이 사자", "explain": "멋쟁이 사자 설명", "img":"lion.jpg"},
+            "ENTJ" : {"animal": "호랑이", "explain": "호랑이 설명", "img":"lion.jpg"},
+            "ISTJ" : {"animal": "하마", "explain": "하마 설명", "img":"lion.jpg"},
+            "ENFP" : {"animal": "멋쟁이 사자", "explain": "멋쟁이 사자 설명", "img":"lion.jpg"},
+            "ENTJ" : {"animal": "호랑이", "explain": "호랑이 설명", "img":"lion.jpg"},
+            
         }
         function start() {
             $(".start").hide();
@@ -46,16 +75,30 @@
             $("#"+type).val(parseInt(preValue)+1);
             next();
         });
-        $("B").click(function(){
+        $("#B").click(function(){
             next();
         });
         function next() {
-            $(".progress-bar").attr('style','width: calc(100/12*'+num+'%)');
-            $("#title").html(q[num]["title"]);
-            $("#type").val(q[num]["type"]);
-            $("#A").html(q[num]["A"]);
-            $("#B").html(q[num]["B"]);
-            num++;
+            if(num == 13) {
+                $(".question").hide();
+                $(".result").show();
+                var mbti = "";
+                ($("#EI").val() <2) ? mbti+= "I" : mbti+= "E";
+                ($("#SN").val() <2) ? mbti+= "N" : mbti+= "S";
+                ($("#TF").val() <2) ? mbti+= "F" : mbti+= "T";
+                ($("#JP").val() <2) ? mbti+= "P" : mbti+= "J";
+                $("#img").attr("src", result[mbti]["img"]);
+                $("#animal").html(result[mbti]["animal"]);
+                $("#explain").html(result[mbti]["explain"]);
+            } else{
+                $(".progress-bar").attr('style','width: calc(100/12*'+num+'%)');
+                $("#title").html(q[num]["title"]);
+                $("#type").val(q[num]["type"]);
+                $("#A").html(q[num]["A"]);
+                $("#B").html(q[num]["B"]);
+                num++;
+            }
+           
         }
     </script>
 </body>
