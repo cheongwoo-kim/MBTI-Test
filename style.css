@@ -1,9 +1,5 @@
 /* 전체 */
 
-*.btn:active, :focus {
-    outline: none !important;
-    border: none!important;
-}
 
 body {
     background-color: #1f1f1f;
